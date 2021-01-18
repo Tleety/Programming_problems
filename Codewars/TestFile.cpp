@@ -54,4 +54,127 @@ TEST(Functions, is_perfect_square){
     ASSERT_EQ(Functions::is_perfect_square(26), false);
 }
 
-TEST(Functions, )
+TEST(Functions, comp){
+    ASSERT_EQ(Functions::comp(
+            std::vector<int>{121, 144, 19, 161, 19, 144, 19, 11},
+            std::vector<int>{14641, 20736, 361, 25921, 361, 20736, 361, 121}),
+            true
+            );
+    ASSERT_EQ(Functions::comp(
+            std::vector<int>{121, 144, 19, 161, 19, 144, 19, 11},
+            std::vector<int>{14641, 20736, 361, 25921, 361, 20736, 362, 121}),
+              false
+    );
+    ASSERT_EQ(Functions::comp(
+            std::vector<int>{},
+            std::vector<int>{}),
+            true
+    );
+    ASSERT_EQ(Functions::comp(
+            std::vector<int>{121, 144, 19, 161, 19, 144, 19, 11},
+            std::vector<int>{132, 14641, 20736, 361, 25921, 361, 20736, 361}),
+              false
+    );
+    ASSERT_EQ(Functions::comp(
+            std::vector<int>{121, 144, 19, 161, 19, 144, 19, 11},
+            std::vector<int>{121, 14641, 20736, 36100, 25921, 361, 20736, 361}),
+              false
+    );
+    ASSERT_EQ(Functions::comp(
+            std::vector<int>{121, 144, 19, 161, 19, 144, 19, 11},
+            std::vector<int>{121, 14641, 20736, 36100, 361, 20736, 361}),
+              false
+    );
+    ASSERT_EQ(Functions::comp(
+            std::vector<int>{11, 11},
+            std::vector<int>{121}),
+              false
+    );
+    ASSERT_EQ(Functions::comp(
+            std::vector<int>{11, 11},
+            std::vector<int>{121, 121, 134}),
+              false
+    );
+}
+
+TEST(Functions, comp_better){
+    ASSERT_EQ(Functions::comp_better(
+            std::vector<int>{121, 144, 19, 161, 19, 144, 19, 11},
+            std::vector<int>{14641, 20736, 361, 25921, 361, 20736, 361, 121}),
+              true
+    );
+    ASSERT_EQ(Functions::comp_better(
+            std::vector<int>{121, 144, 19, 161, 19, 144, 19, 11},
+            std::vector<int>{14641, 20736, 361, 25921, 361, 20736, 362, 121}),
+              false
+    );
+    ASSERT_EQ(Functions::comp_better(
+            std::vector<int>{},
+            std::vector<int>{}),
+              true
+    );
+    ASSERT_EQ(Functions::comp_better(
+            std::vector<int>{121, 144, 19, 161, 19, 144, 19, 11},
+            std::vector<int>{132, 14641, 20736, 361, 25921, 361, 20736, 361}),
+              false
+    );
+    ASSERT_EQ(Functions::comp_better(
+            std::vector<int>{121, 144, 19, 161, 19, 144, 19, 11},
+            std::vector<int>{121, 14641, 20736, 36100, 25921, 361, 20736, 361}),
+              false
+    );
+    ASSERT_EQ(Functions::comp_better(
+            std::vector<int>{121, 144, 19, 161, 19, 144, 19, 11},
+            std::vector<int>{121, 14641, 20736, 36100, 361, 20736, 361}),
+              false
+    );
+    ASSERT_EQ(Functions::comp_better(
+            std::vector<int>{11, 11},
+            std::vector<int>{121}),
+              false
+    );
+    ASSERT_EQ(Functions::comp_better(
+            std::vector<int>{11, 11},
+            std::vector<int>{121, 121, 134}),
+              false
+    );
+}
+
+TEST(Functions, rowSumOddNumbers){
+    ASSERT_EQ(Functions::rowSumOddNumbers(1), 1);
+    ASSERT_EQ(Functions::rowSumOddNumbers(2), 8);
+    ASSERT_EQ(Functions::rowSumOddNumbers(3), 27);
+    ASSERT_EQ(Functions::rowSumOddNumbers(42), 74088);
+}
+
+TEST(Functions, rowSumOddNumbers_better){
+    ASSERT_EQ(Functions::rowSumOddNumbers_better(1), 1);
+    ASSERT_EQ(Functions::rowSumOddNumbers_better(2), 8);
+    ASSERT_EQ(Functions::rowSumOddNumbers_better(3), 27);
+    ASSERT_EQ(Functions::rowSumOddNumbers_better(42), 74088);
+}
+
+TEST(Functions, convertFromRoman){
+    ASSERT_EQ(Functions::convertFromRoman("XXI"), 21);
+    ASSERT_EQ(Functions::convertFromRoman("I"), 1);
+    ASSERT_EQ(Functions::convertFromRoman("IV"), 4);
+    ASSERT_EQ(Functions::convertFromRoman("VI"), 6);
+    ASSERT_EQ(Functions::convertFromRoman("MMVIII"), 2008);
+    ASSERT_EQ(Functions::convertFromRoman("MDCLXVI"), 1666);
+    ASSERT_EQ(Functions::convertFromRoman("MCMXCIV"), 1994);
+}
+
+
+TEST(Functions, likes){
+    auto&& names = std::vector<std::vector<std::string>>{
+      {},
+      {"Peter"},
+      {"Jacob", "Alex"},
+      {"Max", "John", "Mark"},
+      {"Alex", "Jacob", "Mark", "Max"}};
+    ASSERT_EQ(Functions::likes(names[0]), "no one likes this");
+    ASSERT_EQ(Functions::likes(names[1]), "Peter likes this");
+    ASSERT_EQ(Functions::likes(names[2]), "Jacob and Alex like this");
+    ASSERT_EQ(Functions::likes(names[3]), "Max, John and Mark like this");
+    ASSERT_EQ(Functions::likes(names[4]), "Alex, Jacob and 2 others like this");
+}
